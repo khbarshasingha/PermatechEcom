@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import { Switch, Route } from "react-router-dom";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Navbar from "./Components/Navbar";
+import Productlist from "./Components/Productlist";
+import Details from "./Components/Details";
+import Cart from "./Components/Cart";
+import Default from "./Components/Default";
+import Data from "./Components/Data";
+import { ProdData } from "./ProdData";
+import Moblist from "./Components/Moblist";
+import Hphonelist from "./Components/Hphonelist";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+
+      <Switch>
+        <Route
+          exact
+          path="/"
+          component={() => <Productlist data={ProdData} />}
+        />
+        <Route exact path="/details" component={Details} />
+        <Route exact path="/cart" component={() => <Cart data={Data} />} />
+        <Route exact path="/mobiles" component={Moblist} />
+        <Route exact path="/headphones" component={Hphonelist} />
+
+        <Route component={Default} />
+      </Switch>
+    </>
   );
 }
 
